@@ -37,7 +37,7 @@ PORT = 5010
 # example:
 #      Redis: redis://:password@ip:port/db
 #      Ssdb:  ssdb://:password@ip:port
-DB_CONN = 'redis://:pwd@127.0.0.1:6379/0'
+DB_CONN = 'redis://:@192.168.1.9:6379/0'
 
 # proxy table name
 TABLE_NAME = 'use_proxy'
@@ -45,27 +45,40 @@ TABLE_NAME = 'use_proxy'
 
 # ###### config the proxy fetch function ######
 PROXY_FETCHER = [
-    "freeProxy01",
-    "freeProxy02",
-    "freeProxy03",
-    "freeProxy04",
-    "freeProxy05",
-    "freeProxy06",
-    "freeProxy07",
-    "freeProxy08",
-    "freeProxy09",
-    "freeProxy10",
-    "freeProxy11"
+    # --- API类, 质量最高、最稳定 ---
+    "freeProxy_proxyscrape",
+    "freeProxy_geonode",
+    "freeProxy_itarmy",
+    "freeProxy11",  # 稻壳代理也是API
+
+    # --- GitHub原生列表类, 更新及时 ---
+    "freeProxy_github_TheSpeedX",
+    "freeProxy_github_ErcinDedeoglu",
+    "freeProxy_github_ProxyScraper",
+
+    # --- 传统网站解析类, 来源广泛 ---
+    "freeProxy_spys_one",
+    "freeProxy_openproxy_space",
+    "freeProxy_hidemy_name",
+    "freeProxy_free_proxy_cz",
+    "freeProxy01",  # 站大爷
+    "freeProxy02",  # 代理66
+    "freeProxy03",  # 开心代理
+    "freeProxy04",  # FreeProxyList
+    "freeProxy05",  # 快代理
+    "freeProxy07",  # 云代理
+    "freeProxy09",  # 免费代理库
+    "freeProxy10",  # 89免费代理
 ]
 
 # ############# proxy validator #################
 # 代理验证目标网站
 HTTP_URL = "http://httpbin.org"
 
-HTTPS_URL = "https://www.qq.com"
+HTTPS_URL = "https://search.douban.com/book/subject_search?search_text=python"
 
 # 代理验证时超时时间
-VERIFY_TIMEOUT = 10
+VERIFY_TIMEOUT = 15
 
 # 近PROXY_CHECK_COUNT次校验中允许的最大失败次数,超过则剔除代理
 MAX_FAIL_COUNT = 0
@@ -75,7 +88,7 @@ MAX_FAIL_COUNT = 0
 
 # proxyCheck时代理数量少于POOL_SIZE_MIN触发抓取
 POOL_SIZE_MIN = 20
-
+CHECK_COOL_DOWN = 600
 # ############# proxy attributes #################
 # 是否启用代理地域属性
 PROXY_REGION = True

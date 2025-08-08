@@ -1,3 +1,5 @@
+# handler/configHandler.py (已增加读取新配置的功能)
+
 # -*- coding: utf-8 -*-
 """
 -------------------------------------------------
@@ -57,21 +59,21 @@ class ConfigHandler(withMetaclass(Singleton)):
     def verifyTimeout(self):
         return int(os.getenv("VERIFY_TIMEOUT", setting.VERIFY_TIMEOUT))
 
-    # @LazyProperty
-    # def proxyCheckCount(self):
-    #     return int(os.getenv("PROXY_CHECK_COUNT", setting.PROXY_CHECK_COUNT))
-
     @LazyProperty
     def maxFailCount(self):
         return int(os.getenv("MAX_FAIL_COUNT", setting.MAX_FAIL_COUNT))
 
-    # @LazyProperty
-    # def maxFailRate(self):
-    #     return int(os.getenv("MAX_FAIL_RATE", setting.MAX_FAIL_RATE))
-
     @LazyProperty
     def poolSizeMin(self):
         return int(os.getenv("POOL_SIZE_MIN", setting.POOL_SIZE_MIN))
+
+    # ==================== ★★★ 新增读取方法 ★★★ ====================
+    @LazyProperty
+    def checkCoolDown(self):
+        # 确保能从环境中读取，增加了灵活性
+        return int(os.getenv("CHECK_COOL_DOWN", setting.CHECK_COOL_DOWN))
+
+    # ==============================================================
 
     @LazyProperty
     def proxyRegion(self):
@@ -80,4 +82,3 @@ class ConfigHandler(withMetaclass(Singleton)):
     @LazyProperty
     def timezone(self):
         return os.getenv("TIMEZONE", setting.TIMEZONE)
-
